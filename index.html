@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Музыка и Видео</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* Фоновое видео без обрезки */
+    #background-video {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      z-index: -1;
+      object-fit: contain;
+      background-color: black;
+    }
+
+    /* Центр управления */
+    .controls {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      text-align: center;
+    }
+
+    button {
+      padding: 15px 35px;
+      font-size: 20px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: white;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      background: linear-gradient(to right, #2575fc, #6a11cb);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Видеофон -->
+  <video id="background-video" autoplay muted loop playsinline>
+    <source src="background.mp4" type="video/mp4" />
+    Ваш браузер не поддерживает видео.
+  </video>
+
+  <!-- Кнопка управления музыкой -->
+  <div class="controls">
+    <button id="music-button" onclick="toggleMusic()">Воспроизвести музыку</button>
+  </div>
+
+  <!-- Аудио -->
+  <audio id="music" src="music.mp3"></audio>
+
+  <script>
+    const music = document.getElementById("music");
+    const button = document.getElementById("music-button");
+
+    function toggleMusic() {
+      if (music.paused) {
+        music.play();
+        button.textContent = "Пауза";
+      } else {
+        music.pause();
+        button.textContent = "Воспроизвести музыку";
+      }
+    }
+  </script>
+
+</body>
+</html>
